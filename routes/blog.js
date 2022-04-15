@@ -31,6 +31,19 @@ router.get("/new-post", async function(req, res) {
   res.render("create-post", { authors: authors });
 });
 
+router.get("/post/:id", async function(req, res) {
+  const postId = req.params.id;
+  const postDetail = await db
+    .getDb()
+    .collection("posts")
+    .findOne({ _id: new ObjectId(postId)},{ summary:0 })
+
+  if (!postDetail) {
+    return res.status(404).render('404');
+  }
+  res.render("post-detail", { postDetail: postDetail });
+});
+
 router.post("/posts", async function(req, res) {
   const authorId = new ObjectId(req.body.author);
   const author = await db
