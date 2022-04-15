@@ -113,7 +113,12 @@ router.post("/posts/:id/edit", async function(req, res) {
   res.redirect("/posts");
 });
 
-router.delete("/posts", async function(req, res) {
+router.post("/posts/:id/delete", async function(req, res) {
+  const postId = new ObjectId(req.params.id);
+  const result = await db
+    .getDb()
+    .collection("posts")
+    .deleteOne({ _id: postId });
   res.redirect("/posts");
 });
 
