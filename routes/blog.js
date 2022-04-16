@@ -31,7 +31,7 @@ router.get("/new-post", async function(req, res) {
   res.render("create-post", { authors: authors });
 });
 
-router.get("/post/:id", async function(req, res) {
+router.get("/posts/:id", async function(req, res) {
   const postId = req.params.id;
   const postDetail = await db
     .getDb()
@@ -82,7 +82,7 @@ router.post("/posts", async function(req, res) {
 });
 
 router.get("/posts/:id/edit", async function(req, res, next) {
-  const postId = req.params.id;
+  let postId = req.params.id;
 
   try {
     postId = new ObjectId(postId);
