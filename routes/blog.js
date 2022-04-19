@@ -77,7 +77,7 @@ router.post("/posts", async function(req, res) {
     .getDb()
     .collection("posts")
     .insertOne(newPost);
-  console.log(result);
+  // console.log(result);
   res.redirect("/posts");
 });
 
@@ -149,7 +149,8 @@ router.post('/posts/:id/comments', async function (req, res) {
     text: req.body.text,
   };
   await db.getDb().collection('comments').insertOne(newComment);
-  res.redirect('/posts/' + req.params.id);
+  // res.redirect('/posts/' + req.params.id);
+  res.json({ message: 'Comment Added!' });
 });
 
 module.exports = router;
