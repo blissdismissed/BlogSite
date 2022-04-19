@@ -22,29 +22,15 @@
       <p id="body"><%= postDetail.body %></p>
     </section>
     <section id="comments">
-        <% if (!comments) { %>
         <p>
           This post might have comments. You can load them if you want to view
           them.
         </p>
-        <!-- <form action="/posts/<%= postDetail._id %>/comments" method="GET"> -->
           <button id="load-comments-btn" class="btn btn-alt" data-postid="<%= postDetail._id %>">Load Comments</button>
-        <!-- </form> -->
-        <% } else if (comments.length === 0) { %>
-          <p>No comments found.</p>
-        <% } else { %>
-          <ol>
-            <% for (const comment of comments) { %>
-              <li>
-                <%- include('includes/comment-item', { comment: comment }) %>
-              </li>
-            <% } %>
-          </ol>
-        <% } %>
       </section>
       <section id="comments-form">
         <h2>Leave a comment</h2>
-        <form action="/posts/<%= postDetail._id %>/comments" method="POST">
+        <form>
           <div class="form-control">
             <label for="title">Comment title</label>
             <input type="text" id="title" name="title" required />
